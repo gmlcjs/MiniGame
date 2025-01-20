@@ -9,6 +9,7 @@ public class OmokInput : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] OmokGameManager omokGameManager;
     [SerializeField] GameObject MenuPane; // 메뉴 오브젝트
+    [SerializeField] GameObject End; // 게임종료 오브젝트
 
     public void OnClick(InputAction.CallbackContext context)
     {
@@ -21,7 +22,8 @@ public class OmokInput : MonoBehaviour
 
     void HandleClick()
     {
-        if(MenuPane.activeSelf != true){ // 메뉴 창이 활성화가 안될때 실행
+        if(MenuPane.activeSelf != true || End.activeSelf != true){ // 메뉴 창이 활성화가 안될때 실행
+            Debug.Log("실행");
             Vector2 inputPosition;
 
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)

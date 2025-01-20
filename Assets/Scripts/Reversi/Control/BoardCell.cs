@@ -40,9 +40,9 @@ public class BoardCell : MonoBehaviour
 
         int[,] directions =
         {
-            {-1, -1 }, {-1, 0}, {-1, 1},
-            {0, -1 },           {0, 1 },
-            {1, -1}, {1, 0 }, {1, 1},
+            {-1, -1}, {-1, 0}, {-1, 1},
+            {0, -1 },          {0, 1 },
+            {1, -1 }, {1, 0 }, {1, 1 },
         };
 
         int directionCount = directions.GetLength(0);
@@ -59,22 +59,29 @@ public class BoardCell : MonoBehaviour
 
             while (boardManager.GetCellAt(nx, ny) != null)
             {
+                // 현재 좌표(nx, ny)에 있는 셀을 가져옵니다.
                 BoardCell nextCell = boardManager.GetCellAt(nx, ny);
 
+                // 다음 셀이 비어 있는지 확인합니다.
                 if (!nextCell.HasPiece()) break;
 
+                // 다음 셀이 상대방의 돌인지 확인합니다.
                 if (nextCell.IsBlack() != isBlackTurn)
                 {
+                    // 상대방의 돌이 있음을 표시합니다.
                     hasOpponent = true;
+                    // 다음 셀로 이동합니다.
                     nx += dx;
                     ny += dy;
                 }
                 else
                 {
+                    // 상대방의 돌이 있고, 그 다음 셀이 현재 플레이어의 돌이면 유효한 수입니다.
                     if (hasOpponent)
                     {
                         return true;
                     }
+                    // 상대방의 돌이 없으면 반복을 종료합니다.
                     break;
                 }    
             }
